@@ -4,8 +4,9 @@ import resetImg from "../../assets/forgot.png";
 import Card from "../../components/card/Card";
 import { useState } from "react";
 import Loader from '../../components/loader/Loader';
-
-
+import { sendPasswordResetEmail } from "firebase/auth";
+import { auth } from "../../firebase/firebase";
+import { toast } from "react-toastify";
 
 const Reset = () => {
   const [email, setEmail] = useState("");
@@ -15,6 +16,16 @@ const Reset = () => {
     e.preventDefault();
     console.log(email)
     setIsLoading(true);
+
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        setIsLoading(false);
+        toast.success("Check your email for a reset link");
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        toast.error(error.message);
+      });
   }
 
   return (

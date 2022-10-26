@@ -35,7 +35,8 @@ const Login = () => {
     // console.log(email, password)
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // const user = userCredential.user;
+        const user = userCredential.user;
+        console.log(user);
         setIsLoading(false);
         toast.success("Login Successfull");
         redirectUser();
@@ -45,13 +46,15 @@ const Login = () => {
         toast.error(error.message);
       });
   };
+  // login with google
   const provider = new GoogleAuthProvider();
   const signInWithGoogle = (e) => {
     e.preventDefault();
     console.log('Login ke google...')
     signInWithPopup(auth, provider)
       .then((result) => {
-        // const user = result.user;
+        const user = result.user;
+        console.log(user)
         toast.success("Login Successfully");
         redirectUser();
       })
@@ -62,54 +65,57 @@ const Login = () => {
 
 
   return (
-    <section className={`container ${styles.auth}`}>
-      <div className={styles.img}>
-        <img src={loginImg} alt="Login" width="400" />
-      </div>
-
-      <Card>
-        <div className={styles.form}>
-          <h2>Login</h2>
-          <form onSubmit={loginUser}>
-            <input
-              type="text"
-              placeholder="Email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-
-            <button type="submit" className="--btn --btn-primary --btn-block">
-              Login
-            </button>
-
-            <div className={styles.links}>
-              <Link to='/reset'>Reset Password</Link>
-            </div>
-            <p>-- or --</p>
-          </form>
-
-          <button
-            className="--btn --btn-danger --btn-block"
-            onClick={signInWithGoogle}>
-            <FaGoogle color="#fff" />
-            &nbsp;Login with google
-          </button>
-          <span className={styles.register}>
-            <p>Don't have an account?</p>
-            <Link to="/register"> &nbsp; Register</Link>
-          </span>
+    <>
+      {isLoading && <Loader />}
+      <section className={`container ${styles.auth}`}>
+        <div className={styles.img}>
+          <img src={loginImg} alt="Login" width="400" />
         </div>
-      </Card>
 
-    </section>
+        <Card>
+          <div className={styles.form}>
+            <h2>Login</h2>
+            <form onSubmit={loginUser}>
+              <input
+                type="text"
+                placeholder="Email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+
+              <button type="submit" className="--btn --btn-primary --btn-block">
+                Login
+              </button>
+
+              <div className={styles.links}>
+                <Link to='/reset'>Reset Password</Link>
+              </div>
+              <p>-- or --</p>
+            </form>
+
+            <button
+              className="--btn --btn-danger --btn-block"
+              onClick={signInWithGoogle}>
+              <FaGoogle color="#fff" />
+              &nbsp;Login with google
+            </button>
+            <span className={styles.register}>
+              <p>Don't have an account?</p>
+              <Link to="/register"> &nbsp; Register</Link>
+            </span>
+          </div>
+        </Card>
+
+      </section>
+    </>
   )
 }
 
