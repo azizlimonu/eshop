@@ -35,7 +35,7 @@ const AddProduct = () => {
   const { id } = useParams();
   const products = useSelector(selectProducts);
   const productEdit = products.find((item) => item.id === id);
-  console.log(productEdit);
+  // console.log(productEdit);
 
   const [product, setProduct] = useState(() => {
     const newState = detectForm(id, { ...initialState }, productEdit);
@@ -60,7 +60,7 @@ const AddProduct = () => {
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    // console.log(file);
+    console.log(file);
 
     const storageRef = ref(storage, `eshop/${Date.now()}${file.name}`);
     const uploadTask = uploadBytesResumable(storageRef, file);
