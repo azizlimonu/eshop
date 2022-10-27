@@ -27,7 +27,6 @@ header {
     width: 25%;
     color: #fff;
     cursor: pointer;
-
     span {
       color: orangered;
     }
@@ -37,7 +36,6 @@ header {
     width: 75%;
     display: flex;
     justify-content: space-between;
-
     ul {
       display: flex;
       justify-content: space-between;
@@ -49,10 +47,8 @@ header {
 
       li {
         margin: 0 5px;
-
         a {
           color: #fff;
-
           &:hover {
             color: orangered;
           }
@@ -68,15 +64,12 @@ header {
       display: flex;
       color: #fff;
       position: relative;
-
       &:hover {
         color: orangered;
       }
-
       &.active {
         color: var(--color-danger);
       }
-
       p {
         position: absolute;
         top: -1rem;
@@ -96,11 +89,9 @@ header {
     .links a {
       margin: 0 5px;
       color: #fff;
-
       &:hover {
         color: orangered;
       }
-
       &.active {
         color: var(--color-danger);
       }
@@ -143,21 +134,17 @@ header {
 
       ul {
         display: block;
-
         .logo-mobile {
           display: flex;
           justify-content: space-between;
           align-items: center;
-
-          >* {
+          > * {
             cursor: pointer;
           }
         }
-
         li {
           padding: 5px 0;
           border-bottom: 1px solid #333;
-
           a {
             display: block;
           }
@@ -166,7 +153,6 @@ header {
 
       .header-right {
         display: block;
-
         .cart {
           // display: block;
           // padding: 5px 0;
@@ -184,7 +170,6 @@ header {
 
         .links {
           display: block;
-
           a {
             display: block;
             margin: 0;
@@ -194,20 +179,16 @@ header {
         }
       }
     }
-
     .cart {
       display: block;
       padding: 5px 0;
-
       // border-bottom: 1px solid #333;
       a {
         color: #fff;
         position: relative;
-
         &:hover {
           color: orangered;
         }
-
         p {
           position: absolute;
           top: -1rem;
@@ -217,19 +198,15 @@ header {
         }
       }
     }
-
     .show-nav {
       transform: translateX(0);
     }
-
     .hide-nav {
       transform: translateX(-200%);
     }
-
     .menu-icon {
       display: flex;
-
-      >* {
+      > * {
         margin-left: 2rem;
       }
     }

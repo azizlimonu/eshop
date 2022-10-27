@@ -3,10 +3,10 @@ import styles from "./auth.module.scss";
 import registerImg from "../../assets/register.png";
 import Card from "../../components/card/Card";
 import { Link, useNavigate } from "react-router-dom";
-import Loader from '../../components/loader/Loader';
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase/firebase"
-import { toast, ToastContainer } from "react-toastify";
+import { auth } from "../../firebase/config";
+import Loader from "../../components/loader/Loader";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -19,11 +19,7 @@ const Register = () => {
   const registerUser = (e) => {
     e.preventDefault();
     if (password !== cPassword) {
-      toast.error("Passwords do not match.",{
-        position: toast.POSITION.TOP_RIGHT
-      });
-    } else if (password === cPassword) {
-      // console.log(email, password, "registered...")
+      toast.error("Passwords do not match.");
     }
     setIsLoading(true);
 
@@ -32,19 +28,18 @@ const Register = () => {
         const user = userCredential.user;
         console.log(user);
         setIsLoading(false);
-        toast.success("Registration Successfull");
+        toast.success("Registration Successful...");
         navigate("/login");
       })
       .catch((error) => {
         toast.error(error.message);
         setIsLoading(false);
       });
-  }
+  };
 
   return (
     <>
       {isLoading && <Loader />}
-      <ToastContainer />
       <section className={`container ${styles.auth}`}>
         <Card>
           <div className={styles.form}>
@@ -79,18 +74,16 @@ const Register = () => {
 
             <span className={styles.register}>
               <p>Already an account?</p>
-              <Link to="/login">&nbsp; Login</Link>
+              <Link to="/login">Login</Link>
             </span>
           </div>
         </Card>
-
         <div className={styles.img}>
           <img src={registerImg} alt="Register" width="400" />
         </div>
-
       </section>
     </>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;

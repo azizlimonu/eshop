@@ -9,10 +9,6 @@ const Slider = () => {
   // console.log(sliderData)
   // console.log(slideLength)
 
-  const autoScroll = true;
-  let slideInterval;
-  let intervalTime = 4000;
-
   const nextSlide = () => {
     // if in last slide go to the first slide
     setCurrentSlide(currentSlide === slideLength - 1 ? 0 : currentSlide + 1);
@@ -27,6 +23,11 @@ const Slider = () => {
     setCurrentSlide(0);
   }, []);
 
+
+  const autoScroll = true;
+  let slideInterval;
+  let intervalTime = 4000;
+  
   useEffect(() => {
     if (autoScroll) {
       const auto = () => {
@@ -34,8 +35,8 @@ const Slider = () => {
       };
       auto();
     }
-    return () => clearInterval(slideInterval)
-  },[currentSlide, slideInterval, autoScroll])
+    return () => clearInterval(slideInterval);
+  }, [currentSlide, slideInterval, autoScroll]);
 
   return (
     <div className="slider">

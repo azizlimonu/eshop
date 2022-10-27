@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import resetImg from "../../assets/forgot.png";
 import Card from "../../components/card/Card";
 import { useState } from "react";
-import Loader from '../../components/loader/Loader';
-import { sendPasswordResetEmail } from "firebase/auth";
-import { auth } from "../../firebase/firebase";
 import { toast } from "react-toastify";
+import { auth } from "../../firebase/config";
+import { sendPasswordResetEmail } from "firebase/auth";
+import Loader from "../../components/loader/Loader";
 
 const Reset = () => {
   const [email, setEmail] = useState("");
@@ -14,7 +14,6 @@ const Reset = () => {
 
   const resetPassword = (e) => {
     e.preventDefault();
-    console.log(email)
     setIsLoading(true);
 
     sendPasswordResetEmail(auth, email)
@@ -26,7 +25,7 @@ const Reset = () => {
         setIsLoading(false);
         toast.error(error.message);
       });
-  }
+  };
 
   return (
     <>
@@ -52,7 +51,6 @@ const Reset = () => {
               <button type="submit" className="--btn --btn-primary --btn-block">
                 Reset Password
               </button>
-
               <div className={styles.links}>
                 <p>
                   <Link to="/login">- Login</Link>
@@ -61,13 +59,12 @@ const Reset = () => {
                   <Link to="/register">- Register</Link>
                 </p>
               </div>
-
             </form>
           </div>
         </Card>
       </section>
     </>
-  )
-}
+  );
+};
 
-export default Reset
+export default Reset;

@@ -3,37 +3,36 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   isLoggedIn: false,
   email: null,
-  userName: null,
-  userId: null,
+  useName: null,
+  userID: null,
 };
 
 const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState,
   reducers: {
     SET_ACTIVE_USER: (state, action) => {
-      // console.log(action.payload)
-      const { email, userName, userId } = action.payload;
+      // console.log(action.payload);
+      const { email, userName, userID } = action.payload;
       state.isLoggedIn = true;
       state.email = email;
       state.userName = userName;
-      state.userId = userId;
+      state.userID = userID;
     },
-    REMOVE_ACTIVE_USER: (state, action) => {
+    REMOVE_ACTIVE_USER(state, action) {
       state.isLoggedIn = false;
       state.email = null;
       state.userName = null;
-      state.userId = null;
-    }
-  }
+      state.userID = null;
+    },
+  },
 });
 
 export const { SET_ACTIVE_USER, REMOVE_ACTIVE_USER } = authSlice.actions;
 
-// the selector
 export const selectIsLoggedIn = (state) => state.auth.isLoggedIn;
 export const selectEmail = (state) => state.auth.email;
 export const selectUserName = (state) => state.auth.userName;
-export const selectUserID = (state) => state.auth.userId;
+export const selectUserID = (state) => state.auth.userID;
 
 export default authSlice.reducer;
